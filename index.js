@@ -9,7 +9,7 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/");
 });
 
-app.post("/evaluate", (req, res) => {
+app.post("/", (req, res) => {
   let operand1 = req.body.operand1,
     operator = req.body.operator,
     operand2 = req.body.operand2;
@@ -22,17 +22,19 @@ app.post("/evaluate", (req, res) => {
   switch (operator) {
     case "+":
       result = operand1 + operand2;
+      break;
     case "-":
       result = operand1 - operand2;
+      break;
     case "*":
       result = operand1 * operand2;
+      break;
     case "/":
       result = operand1 / operand2;
+      break;
   }
 
-  console.log(result);
-
-  return res.send(result);
+  return res.send(`<p>${result}</p>`);
 });
 
 app.listen(3000);
